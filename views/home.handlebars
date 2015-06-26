@@ -35,7 +35,7 @@
 
       <h4>Write a comment</h4>
 
-      <form action="comment" method="post">
+      <form name="commentForm{{this._id}}" action="comment" method="post">
         <input name="postid" type="hidden" value="{{this._id}}"/>
 
         <div class="form-group">
@@ -43,7 +43,7 @@
 
           <div class="row">
             <div class="col-md-6">
-              <input type="text" class="form-control input-sm" name="name" placeholder="Name" ng-required="true"/>
+              <input type="text" class="form-control input-sm" name="name" placeholder="Name" ng-model="name{{this._id}}" ng-required="true"/>
             </div>
           </div>
         </div>
@@ -53,12 +53,12 @@
           <div class="row">
             <div class="col-md-6">
               <textarea name="content" class="form-control input-sm" rows="4" cols="50" maxlength="1000"
-                        placeholder="Write your comment here" ng-required="true"></textarea>
+                        placeholder="Write your comment here" ng-model="content{{this._id}}" ng-required="true"></textarea>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <input type="submit" value="Post comment" class="btn btn-primary btn-xs"/>
+          <input type="submit" value="Post comment" class="btn btn-primary btn-xs" ng-disabled="commentForm{{this._id}}.$invalid"/>
         </div>
       </form>
 
