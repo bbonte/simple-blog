@@ -1,5 +1,4 @@
 # simple-blog
-A simple blog system built with Node.js, Express.js, NeDB, Handlebars, AngularJS
 
 The simple blog system I developed makes use of the following technologies:
 - Node.js (Javascript platform for server-side applications)
