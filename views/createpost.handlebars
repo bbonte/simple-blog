@@ -1,0 +1,26 @@
+<div ng-app>
+	<h2>Create a post</h2>
+
+	<form action="/post" method="post">
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input type="text" class="form-control" name="title" placeholder="Title" ng-required="true" />
+		</div>
+		
+		<div class="form-group">
+			<label for="publishdate">Publication date</label>
+			<input type="date" class="form-control" ng-model="publishdate" name="publishdate" ng-required="true">
+			<p>The post will be published: \{{publishdate | date:'mediumDate'}}</p>
+		</div>
+		
+		<div class="form-group">
+			<label for="content">Content</label>
+			<textarea name="content" class="form-control" rows="8" cols="50" maxlength="1500" ng-minlength="1"
+                      ng-required="true" ng-model="contenttext" ng-trim="false" placeholder="Write your blog post here"></textarea>
+			<span class="form-help">\{{1500-contenttext.length}} characters remaining</span>
+		</div>		
+		<div class="form-group">
+			<input type="submit" value="Create post" class="btn btn-primary" />
+		</div>
+	</form>
+</div>

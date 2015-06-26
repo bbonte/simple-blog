@@ -1,0 +1,70 @@
+{{#if user}}
+  <p class="bg-warning">
+    You are logged in as {{user.login}}
+  </p>
+  <a class="btn btn-lg btn-success pull-right" href="/post" role="button">Create a post</a>
+  <h1>Blog administration</h1>
+{{else}}
+  <p class="bg-warning">
+    You are not logged in. Click <a href="/login">here</a> to go to the login screen.<br/>
+  </p>
+  <h1>Welcome to The Blog!</h1>
+{{/if}}
+
+<hr>
+
+{{#if posts}}
+  <div class="posts" ng-app>
+  {{#each posts}}
+
+      <h2>{{this.title}}</h2>
+      <p><strong>Publishing date: {{this.publishDate}}</strong></p>
+
+      {{this.content}}
+
+      <h4>Comments</h4>
+      {{#if this.comments}}
+          {{#each comments}}
+              <div class="comment">
+                <strong>{{this.name}}:</strong> {{this.content}}
+              </div>
+          {{/each}}
+      {{else}}
+          <p>There are no comments yet on this post.</p>
+      {{/if}}
+
+      <h4>Write a comment</h4>
+
+      <form action="comment" method="post">
+        <input name="postid" type="hidden" value="{{this._id}}"/>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control input-sm" name="name" placeholder="Name" ng-required="true"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <textarea name="content" class="form-control input-sm" rows="4" cols="50" maxlength="1000"
+                        placeholder="Write your comment here" ng-required="true"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Post comment" class="btn btn-primary btn-xs"/>
+        </div>
+      </form>
+
+      <hr>
+  {{/each}}
+  </div>
+{{else}}
+  <p>There are no published posts to display.</p>
+{{/if}}
